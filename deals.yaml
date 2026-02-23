@@ -15,9 +15,12 @@ services:
         delay: 10s
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.deals.rule=Host(`deals.unaluka.com`)"
+        - "traefik.http.routers.deals.rule=Host(`deals.unaluka.com`) || Host(`unalukadeals.com`) || Host(`www.unalukadeals.com`)"
         - "traefik.http.routers.deals.entrypoints=websecure"
         - "traefik.http.routers.deals.tls.certresolver=letsencryptresolver"
+        - "traefik.http.routers.deals.tls.domains[0].main=deals.unaluka.com"
+        - "traefik.http.routers.deals.tls.domains[1].main=unalukadeals.com"
+        - "traefik.http.routers.deals.tls.domains[1].sans[0]=www.unalukadeals.com"
         - "traefik.http.services.deals.loadbalancer.server.port=3000"
         - "traefik.http.services.deals.loadbalancer.responseforwarding.flushinterval=100ms"
 
