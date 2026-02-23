@@ -23,7 +23,7 @@ export function calcDiscount(priceLocal: number, priceUsd: number, exchangeRate 
 export function isNewDeal(createdAt: Date): boolean {
   const now = new Date();
   const diff = now.getTime() - createdAt.getTime();
-  return diff < 7 * 24 * 60 * 60 * 1000;
+  return diff < 24 * 60 * 60 * 1000;
 }
 
 export function timeAgo(date: Date): string {
