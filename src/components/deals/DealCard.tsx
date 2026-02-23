@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { DealBadge } from "./DealBadge";
 import { PriceDisplay } from "./PriceDisplay";
 import { DealActions } from "./DealActions";
+import { DealInfoLinks } from "./DealInfoLinks";
 import { isNewDeal, timeAgo } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
 
@@ -53,6 +54,9 @@ export function DealCard({ deal, onSelect }: DealCardProps) {
           <h3 className="h-[2.5rem] text-sm font-medium leading-tight text-foreground">
             {deal.title.length > 55 ? `${deal.title.slice(0, 55)}...` : deal.title}
           </h3>
+
+          {/* Quick links */}
+          <DealInfoLinks deal={deal} compact />
 
           <div className="flex items-center justify-between text-xs text-muted-foreground">
             <span>Unaluka.com</span>

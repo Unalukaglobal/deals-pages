@@ -6,7 +6,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { DealBadge } from "./DealBadge";
 import { DealActions } from "./DealActions";
-import { formatPricePEN, formatPriceUSD, isNewDeal, timeAgo } from "@/lib/utils";
+import { DealInfoLinks } from "./DealInfoLinks";
+import { formatPricePEN, isNewDeal, timeAgo } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
 import { trackClick } from "@/lib/clicks";
 
@@ -55,26 +56,10 @@ export function DealExpandedCard({ deal }: DealExpandedCardProps) {
               {deal.title}
             </h3>
 
-            {/* Price table inline */}
-            <div className="mt-3 space-y-1 text-sm">
-              <div className="flex gap-8">
-                <span className="text-muted-foreground">Precio</span>
-                <span className="font-medium">: {formatPricePEN(deal.priceLocal)}</span>
-              </div>
-              <div className="flex gap-8">
-                <span className="text-muted-foreground">Envio</span>
-                <span className="font-medium text-deal-green">: Incluido</span>
-              </div>
-              <div className="flex gap-8">
-                <span className="font-semibold">Precio Final</span>
-                <span className="font-bold text-deal-blue">: {formatPricePEN(deal.priceLocal)} + Envio Gratis</span>
-              </div>
+            {/* Deal info links */}
+            <div className="mt-3">
+              <DealInfoLinks deal={deal} />
             </div>
-
-            {/* Compare */}
-            <p className="mt-2 text-xs text-muted-foreground">
-              En Amazon: {formatPriceUSD(deal.priceUsd)} USD
-            </p>
           </div>
 
           {/* Bottom: actions + store + date + button */}

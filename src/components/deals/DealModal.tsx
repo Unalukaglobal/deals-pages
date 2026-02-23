@@ -15,11 +15,12 @@ import { PriceDisplay } from "./PriceDisplay";
 import { DealBadge } from "./DealBadge";
 import { DealActions } from "./DealActions";
 import { formatPricePEN, formatPriceUSD, isNewDeal, timeAgo } from "@/lib/utils";
-import { ExternalLink, Copy, Share2, ShoppingCart, Send } from "lucide-react";
+import { ExternalLink, Copy, Share2, Send } from "lucide-react";
 import { trackClick } from "@/lib/clicks";
 import { getComments, addComment, DealComment } from "@/lib/comments";
 import { getUser } from "@/lib/auth";
 import { SignUpDialog } from "@/components/auth/SignUpDialog";
+import { DealInfoLinks } from "./DealInfoLinks";
 
 interface DealModalProps {
   deal: DealCardData | null;
@@ -149,41 +150,8 @@ export function DealModal({ deal, open, onClose }: DealModalProps) {
                 document.getElementById("deal-comment-input")?.focus();
               }} />
 
-              {/* Price table */}
-              <div className="rounded-lg border border-border bg-muted/30 p-3">
-                <div className="space-y-1.5 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Precio</span>
-                    <span className="font-medium">{formatPricePEN(deal.priceLocal)}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Envio</span>
-                    <span className="font-medium text-deal-green">Incluido</span>
-                  </div>
-                  <div className="border-t border-border pt-1.5">
-                    <div className="flex justify-between font-semibold">
-                      <span>Precio Final</span>
-                      <span className="text-deal-blue">{formatPricePEN(deal.priceLocal)}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Compare with Amazon */}
-              <div className="rounded-lg border border-border p-3">
-                <p className="mb-1 text-xs font-semibold uppercase text-muted-foreground">
-                  Comparar precio
-                </p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <ShoppingCart className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm font-medium">Amazon</span>
-                  </div>
-                  <span className="text-sm text-muted-foreground">
-                    {formatPriceUSD(deal.priceUsd)} USD
-                  </span>
-                </div>
-              </div>
+              {/* Deal info links */}
+              <DealInfoLinks deal={deal} />
 
               {/* Store + date */}
               <div className="text-xs text-muted-foreground">
