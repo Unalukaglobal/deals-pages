@@ -1,65 +1,75 @@
-import Image from "next/image";
+import { getDeals } from "@/lib/api";
+import { DealGrid } from "@/components/deals/DealGrid";
+import { Search } from "lucide-react";
 
-export default function Home() {
+export default async function HomePage() {
+  const deals = await getDeals();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <div>
+      {/* Hero */}
+      <section className="border-b border-border bg-gradient-to-b from-deal-red/10 to-background px-4 py-16 text-center">
+        <h1 className="mx-auto max-w-3xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+          Las mejores ofertas,{" "}
+          <span className="text-deal-red">los mejores precios</span>
+        </h1>
+        <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
+          Ofertas curadas de tecnologia, gaming, audio y mas.
+          Precios en soles peruanos con envio a Peru.
+        </p>
+
+        {/* Hero search */}
+        <div className="mx-auto mt-8 max-w-md">
+          <form action="/deals" method="get" className="relative">
+            <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+            <input
+              name="q"
+              type="text"
+              placeholder="Buscar deals... drone, creatine, controller..."
+              className="w-full rounded-full border border-border bg-card px-5 py-3 pl-10 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
             />
-            Deploy Now
-          </a>
+          </form>
+        </div>
+
+        {/* Quick tags */}
+        <div className="mx-auto mt-4 flex max-w-lg flex-wrap justify-center gap-2">
+          {["Tecnologia", "Gaming", "Audio", "Deportes"].map((tag) => (
+            <a
+              key={tag}
+              href={`/deals?cat=${tag.toLowerCase()}`}
+              className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              {tag}
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* Deals grid */}
+      <section className="mx-auto max-w-7xl px-4 py-10">
+        <div className="mb-6 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-foreground">
+            Deals de Hoy
+          </h2>
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/deals"
+            className="text-sm text-deal-red transition-colors hover:text-deal-red-hover"
           >
-            Documentation
+            Ver todos &rarr;
           </a>
         </div>
-      </main>
+
+        <DealGrid deals={deals} showViewToggle />
+      </section>
+
+      {/* Disclaimer banner */}
+      <section className="border-t border-border bg-muted/30 px-4 py-6 text-center">
+        <p className="mx-auto max-w-2xl text-xs text-muted-foreground">
+          Los precios pueden cambiar sin previo aviso. Unaluka Deals puede ganar una
+          comision por las compras realizadas a traves de nuestros enlaces.
+          Los precios incluyen costos de importacion y envio a Peru.
+        </p>
+      </section>
     </div>
   );
 }
