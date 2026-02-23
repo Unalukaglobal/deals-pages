@@ -34,7 +34,7 @@ export function SignUpDialog({ open, onClose, onSuccess }: SignUpDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={(o) => { if (!o) onClose(); }}>
-      <DialogContent className="max-w-sm border-border bg-card">
+      <DialogContent className="light-content max-w-sm border-border bg-white text-foreground">
         <DialogHeader>
           <DialogTitle>Unete a Unaluka Deals</DialogTitle>
           <DialogDescription>

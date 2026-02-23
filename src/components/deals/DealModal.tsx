@@ -96,7 +96,7 @@ export function DealModal({ deal, open, onClose }: DealModalProps) {
   return (
     <>
       <Dialog open={open} onOpenChange={(o) => { if (!o) onClose(); }}>
-        <DialogContent className="max-h-[90vh] w-[95vw] max-w-6xl overflow-y-auto border-border bg-card p-0">
+        <DialogContent className="light-content max-h-[90vh] w-[95vw] max-w-6xl overflow-y-auto border-border bg-white p-0 text-foreground">
           <DialogTitle className="sr-only">{deal.title}</DialogTitle>
 
           {/* Horizontal layout */}
