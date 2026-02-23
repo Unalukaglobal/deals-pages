@@ -51,8 +51,8 @@ export function DealCard({ deal, onSelect }: DealCardProps) {
         <div className="flex flex-col gap-2 p-3">
           <PriceDisplay priceLocal={deal.priceLocal} priceUsd={deal.priceUsd} />
 
-          <h3 className="h-[2.5rem] text-sm font-medium leading-tight text-foreground">
-            {deal.title.length > 55 ? `${deal.title.slice(0, 55)}...` : deal.title}
+          <h3 className="line-clamp-2 text-sm font-medium leading-tight text-foreground">
+            {deal.title}
           </h3>
 
           {/* Quick links */}
