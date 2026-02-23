@@ -21,7 +21,7 @@ export function DealCard({ deal, onSelect }: DealCardProps) {
 
   return (
     <Card
-      className="group cursor-pointer overflow-hidden border-border bg-card transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5"
+      className="group cursor-pointer overflow-hidden border border-border bg-card shadow-sm transition-all hover:border-primary/30 hover:shadow-md"
       onClick={() => onSelect(deal)}
     >
       <CardContent className="p-0">

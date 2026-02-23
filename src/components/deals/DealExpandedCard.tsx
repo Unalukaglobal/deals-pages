@@ -19,7 +19,7 @@ export function DealExpandedCard({ deal }: DealExpandedCardProps) {
   const isNew = isNewDeal(deal.createdAt);
 
   return (
-    <Card className="overflow-hidden border-border bg-card transition-all hover:border-primary/30">
+    <Card className="overflow-hidden border border-border bg-card shadow-sm transition-all hover:border-primary/30 hover:shadow-md">
       <div className="flex flex-col sm:flex-row">
         {/* Left: Price + Image */}
         <div className="flex shrink-0 flex-col items-center gap-3 bg-white p-4 sm:w-[220px]">
