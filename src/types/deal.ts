@@ -26,4 +26,4 @@ export interface DealCardData {
   category: string;
 }
 
-export type SortOption = "recent" | "price-low" | "price-high" | "discount";
+export type SortOption = "recent" | "price-low" | "price-high" | "most-clicked";

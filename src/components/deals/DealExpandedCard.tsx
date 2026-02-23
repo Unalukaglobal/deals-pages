@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { DealBadge } from "./DealBadge";
 import { formatPricePEN, formatPriceUSD, isNewDeal, timeAgo } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
+import { trackClick } from "@/lib/clicks";
 
 interface DealExpandedCardProps {
   deal: DealCardData;
@@ -80,7 +81,7 @@ export function DealExpandedCard({ deal }: DealExpandedCardProps) {
             <span className="text-xs text-muted-foreground">
               Unaluka.com ({timeAgo(deal.createdAt)})
             </span>
-            <a href={`/go/${deal.id}`} target="_blank" rel="noopener noreferrer">
+            <a href={`/go/${deal.id}`} target="_blank" rel="noopener noreferrer" onClick={() => trackClick(deal.id)}>
               <Button className="bg-deal-red text-white hover:bg-deal-red-hover">
                 <ExternalLink className="mr-2 h-4 w-4" />
                 Get Deal

@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { categories } from "@/data/deals";
 import { LayoutGrid, List } from "lucide-react";
+import { getClicks } from "@/lib/clicks";
 
 type ViewMode = "grid" | "expanded";
 
@@ -59,6 +60,9 @@ export function DealGrid({
         break;
       case "price-high":
         result.sort((a, b) => b.priceLocal - a.priceLocal);
+        break;
+      case "most-clicked":
+        result.sort((a, b) => getClicks(b.id) - getClicks(a.id));
         break;
       case "recent":
       default:
@@ -124,6 +128,7 @@ export function DealGrid({
                   <SelectItem value="recent">Mas recientes</SelectItem>
                   <SelectItem value="price-low">Menor precio</SelectItem>
                   <SelectItem value="price-high">Mayor precio</SelectItem>
+                  <SelectItem value="most-clicked">Mas clickeados</SelectItem>
                 </SelectContent>
               </Select>
             )}

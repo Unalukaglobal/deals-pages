@@ -13,6 +13,7 @@ import { PriceDisplay } from "./PriceDisplay";
 import { DealBadge } from "./DealBadge";
 import { formatPricePEN, formatPriceUSD, isNewDeal, timeAgo } from "@/lib/utils";
 import { ExternalLink, Copy, Share2, ShoppingCart } from "lucide-react";
+import { trackClick } from "@/lib/clicks";
 interface DealModalProps {
   deal: DealCardData | null;
   open: boolean;
@@ -26,6 +27,7 @@ export function DealModal({ deal, open, onClose }: DealModalProps) {
   const currentImage = deal.imageUrl;
 
   const handleVerDeal = () => {
+    trackClick(deal.id);
     window.open(`/go/${deal.id}`, "_blank");
   };
 
