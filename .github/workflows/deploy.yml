@@ -1,0 +1,39 @@
+name: Deploy Deals Page
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to Nexora
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            set -e
+            cd /opt/deals-pages
+
+            echo "==> Pulling latest code..."
+            git pull origin main
+
+            echo "==> Building Docker image..."
+            docker build \
+              --build-arg NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }} \
+              -t deals:latest .
+
+            echo "==> Deploying stack..."
+            docker stack deploy -c deals.yaml deals
+
+            echo "==> Waiting for service to start..."
+            sleep 10
+            docker service ls | grep deals
+
+            echo "==> Deploy complete!"
