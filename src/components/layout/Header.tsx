@@ -28,7 +28,7 @@ export function Header() {
             alt="Unaluka Deals"
             width={240}
             height={64}
-            className="h-12 w-auto sm:h-14 md:h-16"
+            className="h-20 w-auto sm:h-24 md:h-28"
             priority
             unoptimized
           />
