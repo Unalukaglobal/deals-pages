@@ -21,6 +21,9 @@ services:
         - "traefik.http.routers.deals.entrypoints=websecure"
         - "traefik.http.routers.deals.tls.certresolver=letsencryptresolver"
         - "traefik.http.services.deals.loadbalancer.server.port=3000"
+        - "traefik.http.services.deals.loadbalancer.responseforwarding.flushinterval=100ms"
+        - "traefik.http.middlewares.deals-timeout.buffering.maxResponseBodyBytes=0"
+        - "traefik.http.routers.deals.middlewares=deals-timeout"
 
 networks:
   NexoraNet:
