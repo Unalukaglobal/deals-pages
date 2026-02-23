@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     siteName: "Unaluka Deals",
     type: "website",
   },
+  icons: {
+    icon: "/icon.png",
+  },
   robots: {
     index: true,
     follow: true,
