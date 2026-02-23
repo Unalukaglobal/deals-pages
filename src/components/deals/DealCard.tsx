@@ -51,7 +51,7 @@ export function DealCard({ deal, onSelect }: DealCardProps) {
         <div className="flex flex-col gap-2 p-3">
           <PriceDisplay priceLocal={deal.priceLocal} priceUsd={deal.priceUsd} />
 
-          <h3 className="line-clamp-2 text-sm font-medium leading-tight text-foreground">
+          <h3 className="line-clamp-3 min-h-[3.75rem] text-sm font-medium leading-tight text-foreground">
             {deal.title}
           </h3>
 
