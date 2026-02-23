@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { DealBadge } from "./DealBadge";
 import { PriceDisplay } from "./PriceDisplay";
+import { DealActions } from "./DealActions";
 import { isNewDeal, timeAgo } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
 
@@ -56,6 +57,11 @@ export function DealCard({ deal, onSelect }: DealCardProps) {
           <div className="flex items-center justify-between text-xs text-muted-foreground">
             <span>Unaluka.com</span>
             <span>{timeAgo(deal.createdAt)}</span>
+          </div>
+
+          {/* Actions bar */}
+          <div className="border-t border-border pt-2">
+            <DealActions dealId={deal.id} compact />
           </div>
 
           <Button

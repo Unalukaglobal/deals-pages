@@ -26,4 +26,11 @@ export interface DealCardData {
   category: string;
 }
 
+export interface Comment {
+  userName: string;
+  userEmail: string;
+  text: string;
+  date: string;
+}
+
 export type SortOption = "recent" | "price-low" | "price-high" | "most-clicked";
